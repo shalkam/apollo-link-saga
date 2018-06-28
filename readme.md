@@ -16,12 +16,13 @@ const link = ApolloLink.from([
   sagaLink,
   // ... other links for the ApolloClient goes here
 ]);
+```
 
 ### 2. Start sagas
 
 Now we have to start the listeners for our mutations/queries
 
-1. Create Sagas inside `sagas.js` file for example
+#### 1. Create Sagas inside `sagas.js` file for example
 
 ```
 const sagas = [
@@ -48,7 +49,8 @@ const sagas = [
 export default sagas;
 ```
 
-** Sagas naming **
+**Sagas naming**
+
 So, here's how to know the operation name use for a saga:
 ```
 QUERY|MUTATION.${operationName}.PENDING|FAIL|SUCCESS`
@@ -64,7 +66,7 @@ mutation myMutation {
 ```
 So, we will use `deleteAllUsers` in uppercase for the operationName `DELETEALLUSERS`
 
-2. Run the sagas and start listening to graphql operations
+#### 2. Run the sagas and start listening to graphql operations
 Anywhere in your app outside react execute this function:
 inside `client.js` for example
 
@@ -74,5 +76,3 @@ import sagas from './sagas';
 
 runSagas(sagas);
 ```
-
-And that's it.
