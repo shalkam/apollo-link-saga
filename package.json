@@ -1,0 +1,25 @@
+{
+  "name": "apollo-saga",
+  "version": "1.0.0",
+  "description": "library for handling side-effects for apollo mutations and queries",
+  "main": "dist/main.js",
+  "repository": "https://github.com/shalkam/apollo-link-saga",
+  "author": "Mostafa Sholkamy",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack --watch src --mode development",
+    "build": "webpack --mode production"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "pubsub-js": "^1.6.0",
+    "webpack": "^4.13.0",
+    "webpack-cli": "^3.0.8"
+  },
+  "peerDependencies": {
+    "apollo-link": "^1.2.2",
+    "graphql": "^0.13.2"
+  }
+}
