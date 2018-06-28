@@ -1,5 +1,5 @@
 {
-  "name": "apollo-saga",
+  "name": "apollo-link-saga",
   "version": "1.0.0",
   "description": "library for handling side-effects for apollo mutations and queries",
   "main": "dist/main.js",
