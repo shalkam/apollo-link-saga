@@ -1,11 +1,14 @@
 import { ApolloLink } from 'apollo-link';
 import pubsub from 'pubsub-js';
 
-const pubsubLink = new ApolloLink((operation, forward) => {
-  const operationName = `${operation.query.definitions[0].operation}.${
-    operation.operationName
-  }`.toUpperCase();
+const sagaLink = new ApolloLink((operation, forward) => {
+  console.log(operation);
+  const operationDefinition = operation.query.definitions
+                .find(({kind}) => kind === "OperationDefinition");
+  const name = operation.operationName || operationDefinition.selectionSet.selections[0].name.value;
+  const operationName = `${operationDefinition.operation}.${name}`.toUpperCase();
   pubsub.publish(`${operationName}.PENDING`, operation);
+  console.log(operationName);
   return forward(operation).map(data => {
     const { data: result, errors } = data;
     if (errors) pubsub.publish(`${operationName}.FAIL`, errors);
@@ -14,4 +17,4 @@ const pubsubLink = new ApolloLink((operation, forward) => {
   });
 });
 
-export default pubsubLink;
+export default sagaLink;

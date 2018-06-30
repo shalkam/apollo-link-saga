@@ -56,15 +56,24 @@ So, here's how to know the operation name use for a saga:
 QUERY|MUTATION.${operationName}.PENDING|FAIL|SUCCESS`
 ```
 
-- How to find out operationName
-suppose we have a mutation that looks like this:
+1. If the operation has a name like `myMutation` then it will be used in uppercase `MYMUTATION`
+ => `MUTATION.MYMUTATION`
 
 ```
-mutation myMutation {
-  deleteAllUsers <-- Here's the operationName
+mutation myMutation <-- will use this one first {
+  deleteAllUsers <-- this one won't be used
 }
 ```
-So, we will use `deleteAllUsers` in uppercase for the operationName `DELETEALLUSERS`
+
+2. No operation name, then will use the name of the first field in uppercase `GETUSERS`
+ => `QUERY.GETUSERS`
+
+```
+query { <-- no operation name defined
+  getUsers <-- so, this one will be used
+}
+```
+
 
 #### 2. Run the sagas and start listening to graphql operations
 Anywhere in your app outside react execute this function:
