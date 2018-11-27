@@ -14,6 +14,7 @@ module.exports = {
     externals: {
       'apollo-link' : 'umd apollo-link'
     },
+    target: "node",
     module: {
       rules: [
         {
