@@ -10,7 +10,7 @@ apollo link for handling side-effects for graphql mutations
 
 ```
 import { ApolloLink } from 'apollo-link';
-import { sagaLink } from 'apollo-saga';
+import { sagaLink } from 'apollo-link-saga';
 
 const link = ApolloLink.from([
   sagaLink,
